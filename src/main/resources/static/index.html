@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <style>
+        .main {
+            width: 50%;
+            margin: 50px auto auto;
+        }
+
+        .text {
+            font-size: 30px;
+        }
+
+        .alarm {
+            font-size: 20px;
+            color: red;
+        }
+
+        .mb-3 {
+            margin-top: 20px;
+        }
+
+        .btn {
+            font-size: 30px;
+            float: right;
+        }
+
+        .result-display {
+            margin-top: 100px;
+            display: none;
+        }
+
+        .alert {
+            font-size: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .spinner {
+            float: right;
+            display: none;
+        }
+
+    </style>
+
+    <script>
+        function number() {
+            let groupSize = $('#group-size').val();
+            if (groupSize < 1 || !Number.isInteger(Number(groupSize))) {
+                $('#alarm').css("display", "block");
+            } else {
+                $('#alarm').css("display", "none");
+            }
+        }
+
+        function resultDisplay() {
+            let url = $('#url').val();
+            let type = $('#type').val();
+            let groupSize = $('#group-size').val();
+
+            if (!url || !type || type === "Type" || !groupSize) {
+                $('#alert').css("display", "block");
+            } else {
+                $('#alert').css("display", "none");
+                $('#btn').css("display", "none");
+                $('#spinner').css("display", "block");
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="alert alert-danger" id="alert" role="alert">
+    모든 정보를 입력해주세요.
+</div>
+<div class="card main">
+    <div class="card-body">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="url-form">URL</span>
+            <input type="text" id="url" class="form-control text" placeholder="URL" aria-label="URL"
+                   aria-describedby="basic-addon1">
+        </div>
+
+        <select class="form-select text" id="type" aria-label="Default select example">
+            <option selected>Type</option>
+            <option value="html">HTML 태그 제거</option>
+            <option value="text">Text 전체</option>
+        </select>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="group-size-form">출력 묶음 단위</span>
+            <input type="number" min="1" id="group-size" class="form-control text" placeholder="1" aria-label="URL"
+                   aria-describedby="basic-addon1" onkeyup="number()">
+        </div>
+
+        <text class="alarm" id="alarm" style="display: none">출력 묶음 단위는 1 이상의 자연수만 입력 가능합니다.</text>
+
+        <button type="button" id="btn" class="btn btn-primary" onclick="resultDisplay()">출력</button>
+
+        <div class="spinner-border spinner" id="spinner" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+
+
+        <div id="result-display" class="result-display">
+            <text id="" class="text">몫 :</text>
+            <br/>
+            <text id="" class="text">나머지 :</text>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+</html>
