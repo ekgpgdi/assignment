@@ -117,8 +117,13 @@
                         $('#remainder').text(`나머지 : ${response['remainder']}`);
                         $('#result-display').css("display", "block");
                     },
-                    fail: function (response) {
-                        
+                    error: function (response) {
+                        $('#btn').css("display", "block");
+                        $('#spinner').css("display", "none");
+
+                        $('#quotient').text(`제대로 된 결과를 얻어오지 못했습니다. [${response['responseJSON']['message']}]`);
+                        $('#remainder').text('');
+                        $('#result-display').css("display", "block");
                     }
                 })
             }
@@ -141,8 +146,8 @@
 
         <select class="form-select text" id="type" aria-label="Default select example">
             <option selected>Type</option>
-            <option value="html">HTML 태그 제거</option>
-            <option value="text">Text 전체</option>
+            <option value="text">HTML 태그 제거</option>
+            <option value="html">Text 전체</option>
         </select>
 
         <div class="input-group mb-3">
