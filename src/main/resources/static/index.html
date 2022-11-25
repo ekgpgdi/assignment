@@ -117,8 +117,13 @@
                         $('#remainder').text(`나머지 : ${response['remainder']}`);
                         $('#result-display').css("display", "block");
                     },
-                    fail: function (response) {
-                        
+                    error: function (response) {
+                        $('#btn').css("display", "block");
+                        $('#spinner').css("display", "none");
+
+                        $('#quotient').text(`제대로 된 결과를 얻어오지 못했습니다. [${response['responseJSON']['message']}]`);
+                        $('#remainder').text('');
+                        $('#result-display').css("display", "block");
                     }
                 })
             }
