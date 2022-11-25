@@ -17,12 +17,21 @@ import java.util.stream.Stream;
 @Service
 public class AssignmentService {
 
+    /**
+     * @param assignmentRequestDto
+     * @return
+     */
     public AssignmentResponseDto getResponse(AssignmentRequestDto assignmentRequestDto) {
         String webData = webScraping(assignmentRequestDto.getUrl(), assignmentRequestDto.getType());
         webData = removeOtherCharacter(webData);
         webData = orderData(webData);
 
-        return new AssignmentResponseDto();
+        int remainderSize = webData.length() % Integer.parseInt(assignmentRequestDto.getGroupSize());
+
+        return AssignmentResponseDto.builder()
+                .quotient(webData.substring(0, webData.length() - remainderSize))
+                .remainder(webData.substring(webData.length() - remainderSize))
+                .build();
     }
 
     /**
