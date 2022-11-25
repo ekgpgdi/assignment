@@ -17,6 +17,7 @@ public class AssignmentService {
 
     public AssignmentResponseDto getResponse(AssignmentRequestDto assignmentRequestDto) {
         String webData = webScraping(assignmentRequestDto.getUrl(), assignmentRequestDto.getType());
+        String oneLineData = removeEnter(webData);
 
         return new AssignmentResponseDto();
     }
@@ -46,6 +47,16 @@ public class AssignmentService {
         } else {
             return doc.text();
         }
+    }
+
+    /**
+     * 스크래핑 된 데이터의 줄바꿈을 모두 제거
+     * 
+     * @param webData
+     * @return
+     */
+    public String removeEnter(String webData) {
+        return webData.replace("\n", "").replace("\r", "");
     }
 
 }
