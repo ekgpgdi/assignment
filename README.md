@@ -65,8 +65,12 @@
    
 7. 6번 과정을 거쳐 완성된 문자열을 요청 받은 출력 묶음 단위에 맞게 몫과 나머지로 분리하여 응답 DTO에 담음
 
+<br/>
+
 [성공 응답 예시]
 <img width="1017" alt="스크린샷 2022-11-26 오전 2 37 11" src="https://user-images.githubusercontent.com/84092014/204034199-1bc77f33-6855-4fd8-80f2-7097ba395d1d.png">
+
+<br/>
 
 [실패 응답 예시 - http://localhost:8081 를 구동하지 않고 요청]
 <img width="1033" alt="스크린샷 2022-11-26 오전 2 36 24" src="https://user-images.githubusercontent.com/84092014/204034121-95b8dae7-9bbe-4b67-9e76-c923ecd84643.png">
