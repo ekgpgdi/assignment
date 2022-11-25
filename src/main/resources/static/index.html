@@ -48,6 +48,17 @@
             display: none;
         }
 
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox  */
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
     </style>
 
     <script>
@@ -87,14 +98,17 @@
                 $('#btn').css("display", "none");
                 $('#spinner').css("display", "block");
 
+                let requestData = {
+                    "url": url,
+                    "type": type,
+                    "groupSize": groupSize
+                }
+
                 $.ajax({
                     type: "POST",
-                    url: `https://65a9a2d9-d924-4b6e-95a2-d8562521504c.mock.pstmn.io/api/v1/assignment`,
-                    data: {
-                        url: url,
-                        type: type,
-                        groupSize: groupSize,
-                    },
+                    url: `/api/v1/assignment`,
+                    contentType: "application/json",
+                    data: JSON.stringify(requestData),
                     success: function (response) {
                         $('#btn').css("display", "block");
                         $('#spinner').css("display", "none");
