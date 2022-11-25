@@ -17,7 +17,9 @@ public class AssignmentService {
 
     public AssignmentResponseDto getResponse(AssignmentRequestDto assignmentRequestDto) {
         String webData = webScraping(assignmentRequestDto.getUrl(), assignmentRequestDto.getType());
-        String oneLineData = removeEnter(webData);
+        String englishAndNumberData = removeOtherCharacter(webData);
+
+        System.out.println(englishAndNumberData);
 
         return new AssignmentResponseDto();
     }
@@ -50,13 +52,14 @@ public class AssignmentService {
     }
 
     /**
-     * 스크래핑 된 데이터의 줄바꿈을 모두 제거
-     * 
+     * 영어 숫자만 남기고 제거
+     *
      * @param webData
      * @return
      */
-    public String removeEnter(String webData) {
-        return webData.replace("\n", "").replace("\r", "");
+    public String removeOtherCharacter(String webData) {
+        String match = "[^0-9a-zA-Z]";
+        return webData.replaceAll(match, "");
     }
 
 }
